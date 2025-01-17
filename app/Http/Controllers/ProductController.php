@@ -80,15 +80,31 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('products.edit',['product'=>$product]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        
+        if($request->hasFile('image')){
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
+            ]);
+            // Store the uploaded image
+            $imageName = time() . '.' . $request->image->extension();
+            $imagePath = 'images/' . $imageName;
+            $request->image->move(public_path('images'), $imageName);
+            $request->request->add(['image' => $imagePath]);
+        }else{
+            $request->request->add(['image' => $request->old_image]);
+        }
+        //dd($request->all());
+        Product::find($request->id)->update($request->input());
+        return redirect()->route('products.index');
     }
 
     /**

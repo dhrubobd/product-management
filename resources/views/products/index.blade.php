@@ -75,7 +75,7 @@
             <div class="col-sm-1">{{ $product->price }}</div>
             <div class="col-sm-1">{{ $product->stock }}</div>
             <div class="col-sm-1">
-                <img src="{{ $product->image }}" alt="" class="rounded mx-auto d-block mw-100">
+                <img src="{{ url($product->image) }}" alt="" class="rounded mx-auto d-block mw-100">
             </div>
             <div class="col-sm-1">
                 <form action="{{ route('products.edit',$product) }}" method="POST">
