@@ -21,9 +21,9 @@
                 <div class="col-sm-4"><strong>Product Price</strong></div><div class="col-sm-8 mb-2"><input type="text" inputmode="decimal" name="price" class="form-control form-control-lg" value="{{ $product->price }}" ></div>
                 <div class="col-sm-4"><strong>Stock</strong></div><div class="col-sm-8 mb-2"><input type="number" name="stock" class="form-control form-control-lg" value="{{ $product->stock }}" ></div>
                 <div class="col-sm-4"><strong>Product Image</strong></div><div class="col-sm-8 mb-2"> <img src="{{ url($product->image) }}" alt="" class="img-thumbnail"> <br><br> <input type="file" name="image" class="form-control form-control-lg" ></div>
-                <div class="col-sm-4"></div><div class="col-sm-8 mb-2"><input type="hidden" name="id" value="{{ $product->id }}"><input type="hidden" name="old_image" value="{{ $product->image }}"><button type="submit" class="form-control form-control-lg">EDIT</button></div>
+                <div class="col-sm-4"></div><div class="col-sm-8 mb-2"><input type="hidden" name="id" value="{{ $product->id }}"><input type="hidden" name="old_image" value="{{ $product->image }}"><button type="submit" class="form-control form-control-lg btn btn-info">EDIT</button></div>
                 <div class="col-sm-12">
-                    <h3><a href="{{ route('products.index') }}" class="text-white text-decoration-none">< Go Back</a></h3>
+                    <h3><a href="{{ route('products.index') }}" class="text-info text-decoration-none">< Go Back</a></h3>
                 </div>
             </div>
         </form> 

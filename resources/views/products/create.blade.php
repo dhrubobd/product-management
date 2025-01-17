@@ -21,9 +21,9 @@
                 <div class="col-sm-4"><strong>Product Price</strong></div><div class="col-sm-8 mb-2"><input type="text" inputmode="decimal" name="price" class="form-control form-control-lg" ></div>
                 <div class="col-sm-4"><strong>Stock</strong></div><div class="col-sm-8 mb-2"><input type="number" name="stock" class="form-control form-control-lg" ></div>
                 <div class="col-sm-4"><strong>Product Image</strong></div><div class="col-sm-8 mb-2"><input type="file" name="image" class="form-control form-control-lg" ></div>
-                <div class="col-sm-4"></div><div class="col-sm-8 mb-2"><button type="submit" class="form-control form-control-lg">ADD</button></div>
+                <div class="col-sm-4"></div><div class="col-sm-8 mb-2"><button type="submit" class="form-control form-control-lg btn btn-info">ADD</button></div>
                 <div class="col-sm-12">
-                    <h3><a href="{{ route('products.index') }}" class="text-white text-decoration-none">< Go Back</a></h3>
+                    <h3><a href="{{ route('products.index') }}" class="text-info text-decoration-none">< Go Back</a></h3>
                 </div>
             </div>
         </form> 
