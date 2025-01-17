@@ -14,13 +14,12 @@
     </div>
     <div class="container-fluid bg-3 text-center"> 
         <div class="row bg-info text-dark m-1 p-3">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <form action="{{ route('products.index') }}" method="POST">
                     @csrf @method('GET') 
-                    <strong>Search by product_id or description, name, price : </strong> 
+                    <strong>Search by Product Id or Description, Name, Price : </strong> 
                     <input type="text" name="search" class="form-control-lg" >
-                    <button class="btn btn-info" type="submit">
+                    <button class="btn btn-light" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                         </svg> SEARCH
@@ -30,7 +29,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-2">
                 <div class="d-inline p-2 bg-primary rounded-3">
-                    <strong><a href="{{ route('products.create') }}" class="text-white text-decoration-none m-2 p-2">Add A New Product</a></strong>
+                    <strong><a href="{{ route('products.create') }}" class="text-white text-decoration-none m-2 p-2">+ New Product</a></strong>
                 </div>
             </div>
         </div>
@@ -49,7 +48,7 @@
                     </svg>
                 </a>
             </div>
-            <div class="col-sm-2 text-uppercase"><strong>Description</strong></div>
+            <div class="col-sm-3 text-uppercase"><strong>Description</strong></div>
             <div class="col-sm-1 text-uppercase">
                 <strong>Price</strong>
                 <a href="{{ route('products.index',['sort'=>'pricea']) }}" class="btn btn-info">
@@ -64,7 +63,7 @@
                 </a>
             </div>
             <div class="col-sm-1 text-uppercase"><strong>Stock</strong></div>
-            <div class="col-sm-2 text-uppercase"><strong>Image</strong></div>
+            <div class="col-sm-1 text-uppercase"><strong>Image</strong></div>
             <div class="col-sm-1 text-uppercase"><strong>Edit Product</strong></div>
             <div class="col-sm-1 text-uppercase"><strong>Delete Product</strong></div>
         </div>
@@ -72,15 +71,17 @@
         <div class="row bg-dark text-white m-1 p-2">
             <div class="col-sm-2">{{ $product->product_id }}</div>
             <div class="col-sm-2">{{ $product->name }}</div>
-            <div class="col-sm-2">{{ $product->description }}</div>
+            <div class="col-sm-3">{{ $product->description }}</div>
             <div class="col-sm-1">{{ $product->price }}</div>
             <div class="col-sm-1">{{ $product->stock }}</div>
-            <div class="col-sm-2">{{ $product->image }}</div>
+            <div class="col-sm-1">
+                <img src="{{ $product->image }}" alt="" class="rounded mx-auto d-block mw-100">
+            </div>
             <div class="col-sm-1">
                 <form action="{{ route('products.edit',$product) }}" method="POST">
                     @csrf @method('GET') 
                     <input type="hidden" name="id" value="{{ $product->id }}">
-                    <button type="submit">EDIT</button>
+                    <button type="submit" class="btn btn-light">EDIT</button>
                 </form>
             </div>
             <div class="col-sm-1">
@@ -88,7 +89,7 @@
                     
                     @csrf @method('DELETE') 
                     <input type="hidden" name="id" value="{{ $product->id }}">
-                    <button type="submit">DELETE</button>
+                    <button type="submit" class="btn btn-light">DELETE</button>
                 </form> 
             </div>
         </div>

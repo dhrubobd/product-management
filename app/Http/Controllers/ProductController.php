@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -29,7 +30,7 @@ class ProductController extends Controller
         }else{
             $products  = Product::all();
         }
-        return view('products/index',['products'=>$products]);
+        return view('products.index',['products'=>$products]);
     }
 
     /**
@@ -37,7 +38,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products/create');
     }
 
     /**
@@ -45,7 +46,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
+        ]);
+        // Store the uploaded image
+        $imageName = time() . '.' . $request->image->extension();
+        $imagePath = 'images/' . $imageName;
+        $request->image->move(public_path('images'), $imageName);
+        $insert = Product::create([
+            'product_id'=>$request->input('product_id'),
+            'name'=>$request->input('name'),
+            'description'=>$request->input('description'),
+            'price'=>$request->input('price'),
+            'stock'=>$request->input('stock'),
+            'image'=>$imagePath
+        ]);
+         if($insert != null){
+            $products  = Product::all();
+            return view('products.index',['products'=>$products]);
+        } 
     }
 
     /**
@@ -77,6 +96,16 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        // Check if the image exists and delete it
+        if (File::exists(public_path($product->image))) {
+            File::delete(public_path($product->image));
+        }
+
+        // Delete the product record from the database
+        $product->delete();
+
+        return back()->with('success', 'Product and associated image deleted successfully.');
     }
 }
