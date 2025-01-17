@@ -28,7 +28,7 @@
             </div>
             <div class="col-sm-2"></div>
             <div class="col-sm-2">
-                <div class="d-inline p-2 bg-primary rounded-3">
+                <div class="d-inline p-2 bg-success rounded-3">
                     <strong><a href="{{ route('products.create') }}" class="text-white text-decoration-none m-2 p-2">+ New Product</a></strong>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                 <form action="{{ route('products.edit',$product) }}" method="POST">
                     @csrf @method('GET') 
                     <input type="hidden" name="id" value="{{ $product->id }}">
-                    <button type="submit" class="btn btn-light">EDIT</button>
+                    <button type="submit" class="btn btn-info">EDIT</button>
                 </form>
             </div>
             <div class="col-sm-1">
@@ -89,7 +89,7 @@
                     
                     @csrf @method('DELETE') 
                     <input type="hidden" name="id" value="{{ $product->id }}">
-                    <button type="submit" class="btn btn-light">DELETE</button>
+                    <button type="submit" class="btn btn-danger">DELETE</button>
                 </form> 
             </div>
         </div>

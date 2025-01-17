@@ -13,6 +13,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        //Sorting and searching
         if($request->sort=="pricea"){
             $products  = Product::orderBy('price','asc')->get();
         }else if($request->sort=="priced"){
@@ -91,6 +92,11 @@ class ProductController extends Controller
     {
         
         if($request->hasFile('image')){
+
+            //Deleting old image
+            if (File::exists(public_path($request->old_image))) {
+                File::delete(public_path($request->old_image));
+            }
             $request->validate([
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
             ]);
